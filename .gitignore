@@ -3,6 +3,9 @@
 node_modules/
 .vercel/
 
+# Vercel local env (OIDC token)
+.env*
+
 # OS / editor
 .DS_Store
 Thumbs.db
