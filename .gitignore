@@ -1,0 +1,8 @@
+# Tooling / local cruft
+.stitch-chrome-profile/
+node_modules/
+.vercel/
+
+# OS / editor
+.DS_Store
+Thumbs.db

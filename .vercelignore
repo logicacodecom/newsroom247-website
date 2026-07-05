@@ -1,0 +1,5 @@
+# Design source & dev tooling — not part of the deployed site
+stitch/
+.stitch-chrome-profile/
+.agents/
+cdp-query.mjs

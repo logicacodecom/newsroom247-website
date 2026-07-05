@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsroom247 - Editorial Intelligence System</title>
+<meta name="description" content="The ultimate control room for high-stakes journalism. Unify digital and print publishing, manage resources, and deploy AI safely."/>
+<link rel="icon" type="image/svg+xml" href="/assets/brand/icon.svg"/>
+<link rel="icon" type="image/png" href="/assets/brand/icon.png"/>
+<link rel="apple-touch-icon" href="/assets/brand/icon.png"/>
+<!-- ponytail: Tailwind CDN is fine for a single static marketing page; add a build step only if this grows into a real app. -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=IBM+Plex+Sans:wght@500;600&amp;family=Source+Sans+3:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dae3f4",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "outline": "#8a7266",
+                        "on-tertiary-fixed": "#001e2c",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#331100",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb690",
+                        "on-secondary-fixed-variant": "#464747",
+                        "surface-base": "#FFFFFF",
+                        "secondary-fixed": "#e4e2e2",
+                        "inverse-surface": "#28313e",
+                        "on-surface": "#131c28",
+                        "primary-fixed": "#ffdbca",
+                        "on-tertiary-container": "#00384d",
+                        "status-success": "#1EB06C",
+                        "surface-container-highest": "#dae3f4",
+                        "surface-subtle": "#E9ECEF",
+                        "primary-container": "#f17a30",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#79d1ff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed-variant": "#004c68",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#c3e8ff",
+                        "surface-dim": "#d1daeb",
+                        "on-secondary-container": "#646464",
+                        "outline-variant": "#dec1b3",
+                        "tertiary": "#006689",
+                        "primary": "#9d4400",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#9d4400",
+                        "surface-bright": "#f8f9ff",
+                        "status-alert": "#F05428",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#131c28",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#00a7df",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "secondary": "#5e5e5e",
+                        "surface-muted": "#F8F9FA",
+                        "secondary-container": "#e4e2e2",
+                        "surface": "#f8f9ff",
+                        "on-primary-fixed-variant": "#783200",
+                        "on-surface-variant": "#574238",
+                        "surface-container-high": "#e0e9fa",
+                        "status-info": "#2FA0A3",
+                        "on-primary-container": "#582300",
+                        "surface-container": "#e6eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "column-gap": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["\"Source Sans 3\""],
+                        "body-sm": ["\"Source Sans 3\""],
+                        "label-md": ["IBM Plex Sans"],
+                        "label-sm": ["IBM Plex Sans"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["\"Source Sans 3\""],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        html, body { overflow-x: hidden; }
+        body { background-color: #F8F9FA; color: #131c28; }
+        .grid-bg {
+            background-size: 24px 24px;
+            background-image:
+                linear-gradient(to right, rgba(233, 236, 239, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(233, 236, 239, 0.5) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-base border-b border-outline-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<a class="flex-shrink-0" href="/" aria-label="Newsroom247 home">
+<img alt="Newsroom247" class="h-6 w-auto" src="/assets/brand/logo.svg"/>
+</a>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-opacity duration-150" href="#">Product</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Solutions</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Intelligence</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Pricing</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Log In</a>
+<a class="bg-primary-container text-on-error font-label-md text-label-md px-4 py-2 rounded flex items-center gap-2 hover:bg-surface-tint transition-colors" href="#">
+                    Request Demo <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative bg-surface-base grid-bg pt-16 md:pt-24 pb-16 overflow-hidden border-b border-surface-subtle">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-column-gap items-center relative z-10">
+<div class="lg:col-span-5 min-w-0 flex flex-col items-start space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-muted border border-surface-subtle rounded-sm">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Editorial workflow</span>
+</div>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface">AI Editorial OS <i style="font-weight: normal;">for </i>Modern Newsrooms</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        The ultimate control room for high-stakes journalism. Unify digital and print publishing, manage resources, and deploy AI safely—all in one dense, highly performant environment.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
+<a class="bg-primary-container text-on-error font-label-md text-label-md px-6 py-3 rounded flex items-center justify-center hover:bg-surface-tint transition-colors w-full sm:w-auto" href="#">
+                            Deploy Infrastructure
+                        </a>
+<a class="border border-secondary text-secondary font-label-md text-label-md px-6 py-3 rounded flex items-center justify-center hover:bg-surface-muted transition-colors w-full sm:w-auto" href="#">
+                            View Documentation
+                        </a>
+</div>
+</div>
+<div class="lg:col-span-7 min-w-0 mt-12 lg:mt-0 relative">
+<div class="bg-surface-base border border-surface-subtle rounded-lg shadow-sm overflow-hidden flex flex-col">
+<img class="w-full h-auto object-cover" src="/assets/images/hero-dashboard.png" alt="Newsroom247 editorial dashboard shown on a tablet in a dark blue, control-room aesthetic."/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-base border-t border-surface-subtle">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Editorial Intelligence System</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+                        The ultimate control room for high-stakes journalism. Unify digital and print publishing, manage resources, and deploy AI safely.
+                    </p>
+</div>
+<div class="flex gap-4">
+<a class="text-secondary hover:text-primary transition-colors" href="#" aria-label="Documentation"><span class="material-symbols-outlined">book</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#" aria-label="Chat"><span class="material-symbols-outlined">chat</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Product</span>
+<nav class="flex flex-col gap-2">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Reference</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Changelog</a>
+</nav>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Company</span>
+<nav class="flex flex-col gap-2">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Status</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+</nav>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Legal</span>
+<nav class="flex flex-col gap-2">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Compliance</a>
+</nav>
+</div>
+<div class="md:col-span-2 flex md:justify-end">
+<a class="border border-secondary text-secondary font-label-md text-label-md px-4 py-2 rounded hover:bg-surface-muted transition-colors self-start" href="#">Sign In</a>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-surface-subtle flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                © 2026 Editorial Intelligence System. All rights reserved.
+            </p>
+<div class="flex items-center gap-2 text-secondary hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[18px]">language</span>
+<span class="font-label-md text-label-md">English (US)</span>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
