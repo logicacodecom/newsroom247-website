@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>نيوزروم247 — أدِر غرفة أخبارك على نظام تحرير بالذكاء الاصطناعي</title>
+<meta name="description" content="نيوزروم247 نظام تشغيل تحريري أصيل مدعوم بالذكاء الاصطناعي — التخطيط والتكليفات والإنتاج وتحسين محركات البحث والموافقات والنشر وتنسيق الطباعة والتحليلات في سير عمل واحد."/>
+<link rel="alternate" hreflang="en" href="/v2/"/>
+<link rel="alternate" hreflang="ar" href="/v2/ar/"/>
+<link rel="icon" type="image/svg+xml" href="/assets/brand/icon.svg"/>
+<link rel="icon" type="image/png" href="/assets/brand/icon.png"/>
+<link rel="apple-touch-icon" href="/assets/brand/icon.png"/>
+<!-- ponytail: same zero-build static + Tailwind CDN as the English page; separate RTL file keeps i18n dead simple. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#141b26', body: '#514c45', faint: '#8a857e',
+          orange: '#F17A30', 'orange-ink': '#9d4400',
+          coral: '#EF4E23', peach: '#FFE7D8',
+          teal: '#2FA0A3', green: '#1EB06C',
+          paper: '#FFFFFF', sand: '#F7F2EB', line: '#EAE4DC',
+          nightline: '#2a3342'
+        },
+        fontFamily: {
+          display: ['Cairo', 'Tahoma', 'sans-serif'],
+          sans: ['"IBM Plex Sans Arabic"', 'Tahoma', 'sans-serif'],
+          label: ['"IBM Plex Sans Arabic"', 'sans-serif']
+        },
+        maxWidth: { shell: '1200px' }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: '"IBM Plex Sans Arabic"', Tahoma, sans-serif; color: #514c45; background: #fff; letter-spacing: normal; }
+  .font-display { font-family: 'Cairo', Tahoma, sans-serif; }
+  .grid-bg {
+    background-size: 26px 26px;
+    background-image:
+      linear-gradient(to right, rgba(20,27,38,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(20,27,38,.045) 1px, transparent 1px);
+  }
+  .pill { font-family: '"IBM Plex Sans Arabic"', sans-serif; letter-spacing: normal; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); will-change: opacity, transform; }
+  .reveal.in { opacity: 1; transform: none; }
+  .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .lift:hover { transform: translateY(-4px); }
+  /* RTL: forward-arrows point left, move left on hover */
+  .cta-arrow svg { transition: transform .2s ease; transform: scaleX(-1); }
+  .cta-arrow:hover svg { transform: scaleX(-1) translateX(4px); }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .floaty { animation: floaty 7s ease-in-out infinite; }
+  /* footer world-map location pins */
+  .pin { position: absolute; transform: translate(-50%, -50%); }
+  .pin-dot { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 9999px; background: #F17A30; box-shadow: 0 0 0 2px rgba(255,255,255,.85), 0 0 14px 2px rgba(241,122,48,.9); }
+  .pin-ring { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 9999px; background: rgba(241,122,48,.45); animation: pin-ping 2.6s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes pin-ping { 0% { transform: scale(1); opacity: .7; } 75%,100% { transform: scale(3.6); opacity: 0; } }
+  .pin-label { position: absolute; left: 50%; bottom: 15px; transform: translateX(-50%); white-space: nowrap; font-family: '"IBM Plex Sans Arabic"', sans-serif; font-size: 11px; font-weight: 600; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.7); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+    .floaty { animation: none; }
+    .pin-ring { animation: none; }
+  }
+</style>
+</head>
+<body class="antialiased text-[17px] leading-loose">
+
+<!-- ================= NAV ================= -->
+<header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center"><img src="/assets/brand/logo.svg" alt="نيوزروم247" class="h-5 w-auto"/></a>
+    <nav class="hidden lg:flex items-center gap-7 font-label text-[14px] text-ink/70">
+      <a href="#platform" class="hover:text-orange-ink transition-colors">المنصّة</a>
+      <a href="#modules" class="hover:text-orange-ink transition-colors">الوحدات</a>
+      <a href="#seo" class="hover:text-orange-ink transition-colors">محركات البحث</a>
+      <a href="#ai" class="hover:text-orange-ink transition-colors">نواة الذكاء</a>
+      <a href="#audiences" class="hover:text-orange-ink transition-colors">لمن هي؟</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="/v2/" hreflang="en" lang="en" dir="ltr" aria-label="Switch to English" class="inline-flex items-center gap-1.5 font-label text-[13px] text-ink/70 hover:text-orange-ink hover:border-orange border border-line rounded-md px-2.5 py-1.5 transition-colors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+        English
+      </a>
+      <a href="#demo" class="cta-arrow inline-flex items-center gap-2 bg-orange text-white font-label text-[14px] px-4 py-2 rounded-md hover:bg-orange-ink transition-colors">
+        اطلب عرضاً توضيحياً
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="relative overflow-hidden bg-white grid-bg border-b border-line">
+  <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-peach/40 via-white/0 to-white"></div>
+  <div class="relative max-w-shell mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-14 md:pb-20">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <div class="flex flex-wrap justify-center gap-2 mb-6">
+        <span class="pill text-[12px] bg-peach text-orange-ink px-2.5 py-1 rounded">نظام تحرير بالذكاء الاصطناعي</span>
+        <span class="pill text-[12px] bg-peach text-orange-ink px-2.5 py-1 rounded">رقمي + مطبوع</span>
+        <span class="pill text-[12px] bg-peach text-orange-ink px-2.5 py-1 rounded">جاهز لمحركات البحث</span>
+        <span class="pill text-[12px] bg-peach text-orange-ink px-2.5 py-1 rounded">تحكّم تحريري بشري</span>
+      </div>
+      <h1 class="font-display text-[2.3rem] md:text-[3.4rem] leading-[1.25] text-ink font-bold">
+        أدِر غرفة أخبارك على <span class="text-orange-ink">نظام تشغيل تحريري بالذكاء الاصطناعي</span>
+      </h1>
+      <p class="mt-6 text-body text-[1.15rem] max-w-2xl mx-auto leading-loose">
+        نيوزروم247 منصّة ذكية يدعم فيها الذكاء الاصطناعي كل مرحلة من مراحل العمل التحريري — من التخطيط والتكليفات إلى الإنتاج وتحسين محركات البحث والموافقات والنشر وتنسيق الطباعة والتحليلات ودعم اتخاذ القرار.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#demo" class="cta-arrow inline-flex items-center justify-center gap-2 bg-orange text-white font-label text-sm px-6 py-3.5 rounded-md hover:bg-orange-ink transition-colors">
+          اطلب عرضاً توضيحياً
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#platform" class="inline-flex items-center justify-center border border-ink/25 text-ink font-label text-sm px-6 py-3.5 rounded-md hover:border-orange hover:text-orange-ink transition-colors">
+          استكشف المنصّة
+        </a>
+      </div>
+    </div>
+    <figure class="mt-14 md:mt-16 reveal" style="transition-delay:.1s">
+      <div class="relative mx-auto">
+        <div class="absolute -inset-x-8 -inset-y-6 bg-orange/10 blur-3xl rounded-[40px] pointer-events-none"></div>
+        <div class="relative rounded-xl border border-line bg-sand ring-1 ring-ink/5 shadow-2xl shadow-ink/15 overflow-hidden min-h-[260px] md:min-h-[520px] grid place-items-center">
+          <img src="/assets/images/editor.png" alt="محرّر نيوزروم247 — قائمة القصص، ومساحة عمل المحرّر، ولوحة البيانات الوصفية، مع دعم العربية والإنجليزية والاتجاهين" loading="eager" class="w-full block"/>
+        </div>
+      </div>
+      <figcaption class="mt-3.5 text-center font-label text-[12px] text-faint">محرّر نيوزروم247 — مساحة عمل واحدة للمراسلين والمحررين والناشرين، بالعربية والإنجليزية.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= COLLABORATION ================= -->
+<section id="platform" class="bg-sand border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-2xl reveal">
+      <span class="pill text-[12px] text-orange-ink">نيوزروم247</span>
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] text-ink font-bold mt-3">أبقِ المراسلين والمحررين والمصممين والناشرين على تنسيق واحد.</h2>
+      <p class="mt-5 text-body">يستبدل نيوزروم247 التواصل المتشتّت بتعاون منظّم قائم على الأدوار — يُبقي كل معنيّ متزامناً من التكليف حتى النشر.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="reveal lift bg-white border border-line rounded-xl p-6">
+        <div class="w-11 h-11 rounded-lg bg-orange/12 text-orange flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink font-semibold">التعليقات والإشارات</h3>
+        <p class="mt-2 text-body text-[15px]">ملاحظات مباشرة وإشارات @ تُبقي النقاش مرتبطاً بالقصة.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.06s">
+        <div class="w-11 h-11 rounded-lg bg-coral/12 text-coral flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink font-semibold">التكليفات والمواعيد النهائية</h3>
+        <p class="mt-2 text-body text-[15px]">ملكية واضحة ومواعيد تسليم ظاهرة عبر غرفة الأخبار كاملة.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.12s">
+        <div class="w-11 h-11 rounded-lg bg-orange/12 text-orange flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink font-semibold">قوائم انتظار على مستوى المكتب</h3>
+        <p class="mt-2 text-body text-[15px]">لكل مكتب قائمة انتظار خاصة به مرتّبة حسب الأولوية.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6">
+        <div class="w-11 h-11 rounded-lg bg-coral/12 text-coral flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink font-semibold">سجلّ الموافقات</h3>
+        <p class="mt-2 text-body text-[15px]">سجلّ تدقيق كامل للمراجعات والقرارات والتعديلات التحريرية.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.06s">
+        <div class="w-11 h-11 rounded-lg bg-orange/12 text-orange flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink font-semibold">صلاحيات قائمة على الأدوار</h3>
+        <p class="mt-2 text-body text-[15px]">تحكّم بالوصول حسب الدور أو المكتب أو مرحلة سير العمل.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.12s">
+        <div class="w-11 h-11 rounded-lg bg-coral/12 text-coral flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink font-semibold">الإشعارات</h3>
+        <p class="mt-2 text-body text-[15px]">تنبيهات فورية للتكليفات والموافقات والمواعيد النهائية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEMS ================= -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-2xl reveal">
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] text-ink font-bold">غرف الأخبار تتحرّك أسرع من أدواتها.</h2>
+      <p class="mt-5 text-body">تعتمد الفرق التحريرية على البريد الإلكتروني وواتساب وجداول البيانات وأنظمة إدارة المحتوى القديمة — دون سير عمل موحّد. تتسرّب القصص، وتتعطّل الموافقات، ويُستخدم الذكاء الاصطناعي يدوياً بدل أن يكون مدمجاً في العملية.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="reveal lift rounded-xl p-6 border-r-4 border-coral bg-coral/5">
+        <h3 class="font-display text-xl text-ink font-semibold">صعوبة تتبّع القصص</h3>
+        <p class="mt-2 text-body text-[15px]">لا رؤية موحّدة عبر المكاتب والمواعيد النهائية.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-r-4 border-coral bg-coral/5" style="transition-delay:.05s">
+        <h3 class="font-display text-xl text-ink font-semibold">موافقات غير واضحة</h3>
+        <p class="mt-2 text-body text-[15px]">سلاسل مراجعة يدوية تخلق اختناقات وارتباكاً.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-r-4 border-coral bg-coral/5" style="transition-delay:.1s">
+        <h3 class="font-display text-xl text-ink font-semibold">تحسين متأخّر لمحركات البحث</h3>
+        <p class="mt-2 text-body text-[15px]">يحدث التحسين بعد الكتابة لا أثناءها.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-r-4 border-coral bg-coral/5">
+        <h3 class="font-display text-xl text-ink font-semibold">انفصال الرقمي عن المطبوع</h3>
+        <p class="mt-2 text-body text-[15px]">سير عمل منفصل يسبّب ازدواجية وتنسيقاً ضائعاً.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-r-4 border-coral bg-coral/5" style="transition-delay:.05s">
+        <h3 class="font-display text-xl text-ink font-semibold">تعاون مُجزّأ</h3>
+        <p class="mt-2 text-body text-[15px]">فرق مبعثرة عبر الأدوات دون سياق مشترك.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-r-4 border-coral bg-coral/5" style="transition-delay:.1s">
+        <h3 class="font-display text-xl text-ink font-semibold">غياب الرؤية الفورية</h3>
+        <p class="mt-2 text-body text-[15px]">يفتقر المدراء إلى رؤية حيّة لعمليات التحرير.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUTION / 8 MODULES ================= -->
+<section id="modules" class="bg-sand border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-3xl reveal">
+      <span class="pill text-[12px] text-orange-ink">8 وحدات</span>
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] text-ink font-bold mt-3">نظام تشغيل واحد أصيل بالذكاء الاصطناعي لدورة الحياة التحريرية كاملة.</h2>
+      <p class="mt-5 text-body">ثماني وحدات مصمّمة لغرض محدّد — من التخطيط والمكاتب إلى الإنتاج والنشر والطباعة — تحاكي طريقة عمل غرف الأخبار الحقيقية، دون أدوات منفصلة.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+      <div class="reveal">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">لوحة غرفة الأخبار</h3>
+        <p class="mt-1.5 text-body text-[15px]">عرض حيّ للتكليفات والمواعيد النهائية وحالة النشر.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.05s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">مساحة عمل القصة</h3>
+        <p class="mt-1.5 text-body text-[15px]">محرّر منظّم للوسائط والبيانات الوصفية وتجهيز القنوات.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4v7a4 4 0 0 1-4 4H6"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">منشئ سير العمل</h3>
+        <p class="mt-1.5 text-body text-[15px]">اضبط الحالات التحريرية والانتقالات وقواعد الموافقة.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h8M8 18h5"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">التقويم التحريري</h3>
+        <p class="mt-1.5 text-body text-[15px]">خطّط التغطية والمقابلات وجداول النشر.</p>
+      </div>
+      <div class="reveal">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-12 0"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">إدارة المكاتب</h3>
+        <p class="mt-1.5 text-body text-[15px]">نظّم الفرق حسب المجال أو القسم أو مكتب مخصّص.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.05s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">قنوات النشر</h3>
+        <p class="mt-1.5 text-body text-[15px]">جهّز وانشر للويب والتواصل الاجتماعي والتوزيع.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">مكتب الطبعة المطبوعة</h3>
+        <p class="mt-1.5 text-body text-[15px]">خطّط الأعداد والصفحات ومساحات الإعلانات وتسليم المصممين.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 4-6"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink font-semibold">التحليلات والذكاء</h3>
+        <p class="mt-1.5 text-body text-[15px]">حوّل نشاط غرفة الأخبار إلى رؤى تشغيلية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEO ================= -->
+<section id="seo" class="bg-white border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <span class="pill text-[12px] text-orange-ink">ذكاء محركات البحث</span>
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] text-ink font-bold mt-3">تحسين محركات البحث مدمج في سير العمل التحريري.</h2>
+      <p class="mt-5 text-body">يساعد الذكاء الاصطناعي على تحسين الظهور قبل النشر — ليس كخطوة لاحقة، بل كجزء طبيعي من الكتابة والمراجعة.</p>
+      <ul class="mt-8 space-y-4">
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">اقتراحات عناوين محسّنة</strong> — عناوين ملائمة للبحث دون التضحية بالجودة التحريرية.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">مساعدة في الرابط والبيانات الوصفية</strong> — توليد تلقائي للروابط والأوصاف والبيانات الوصفية المنظّمة.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">توصيات الكلمات المفتاحية</strong> — اقتراحات سياقية حسب موضوع القصة وجمهورها.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">فحوص جاهزية المحتوى</strong> — التحقق من اكتمال القصة قبل وصولها لمرحلة الموافقة.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">اقتراحات الروابط الداخلية</strong> — إبراز محتوى قائم ذي صلة لبنية أقوى في محركات البحث.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">تحسين خاص بكل قناة</strong> — تكييف التنسيق والبيانات الوصفية لكل قناة نشر.</span></li>
+      </ul>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <div class="rounded-xl border border-line bg-ink shadow-2xl shadow-ink/20 overflow-hidden" dir="rtl">
+        <div class="flex items-center gap-1.5 px-4 h-9 border-b border-nightline">
+          <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span><span class="w-2.5 h-2.5 rounded-full bg-white/20"></span><span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+          <span class="mr-3 font-label text-[11px] text-white/40">مساحة عمل القصة · مساعد محركات البحث</span>
+        </div>
+        <div class="p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-label text-[11px] text-white/40">درجة محركات البحث</span>
+            <span class="font-label text-[11px] text-green">قوية · 86</span>
+          </div>
+          <div class="h-1.5 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[86%] bg-gradient-to-l from-orange to-green"></div></div>
+          <div class="rounded-lg bg-white/5 border border-nightline p-3">
+            <div class="font-label text-[11px] text-orange mb-1">اقتراح عنوان</div>
+            <div class="text-white/85 text-sm">«المجلس البلدي يوافق على خطة الواجهة البحرية بعد أشهر من النقاش»</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="rounded-lg bg-white/5 border border-nightline p-3"><div class="font-label text-[11px] text-white/40 mb-1">الرابط</div><div class="text-white/80 text-[13px]" dir="ltr">/waterfront-plan-approved</div></div>
+            <div class="rounded-lg bg-white/5 border border-nightline p-3"><div class="font-label text-[11px] text-white/40 mb-1">الجاهزية</div><div class="text-green text-[13px]">اجتياز كل الفحوص</div></div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="pill text-[11px] bg-white/10 text-white/60 px-2 py-0.5 rounded">واجهة بحرية</span>
+            <span class="pill text-[11px] bg-white/10 text-white/60 px-2 py-0.5 rounded">المجلس البلدي</span>
+            <span class="pill text-[11px] bg-white/10 text-white/60 px-2 py-0.5 rounded">التخطيط العمراني</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIGITAL + PRINT ================= -->
+<section class="bg-sand border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-3xl reveal">
+      <span class="pill text-[12px] text-orange-ink">منصّة موحّدة واحدة</span>
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] text-ink font-bold mt-3">رقمي أولاً. واعٍ بالطباعة. مدعوم بالذكاء الاصطناعي.</h2>
+      <p class="mt-5 text-body">يخدم نيوزروم247 المؤسسات التي تنشر رقمياً بينما تدير عمليات طباعة جادّة — منصّة موحّدة، دون ازدواجية.</p>
+    </div>
+    <div class="mt-12 grid md:grid-cols-2 gap-4">
+      <div class="reveal lift bg-white border border-line rounded-xl p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-10 h-10 rounded-lg bg-orange/12 text-orange flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
+          <h3 class="font-display text-xl text-ink font-semibold">سير عمل النشر الرقمي</h3>
+        </div>
+        <ul class="space-y-2.5 text-body text-[15px]">
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>نشر على الموقع مع بيانات وصفية لمحركات البحث</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>تجهيز وجدولة وسائل التواصل الاجتماعي</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>تحسين خاص بكل قناة</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>تتبّع فوري للموافقات التحريرية</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>فحوص جاهزية محتوى مدعومة بالذكاء الاصطناعي</li>
+        </ul>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-8" style="transition-delay:.08s">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-10 h-10 rounded-lg bg-coral/12 text-coral flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg></span>
+          <h3 class="font-display text-xl text-ink font-semibold">تخطيط الطبعة المطبوعة</h3>
+        </div>
+        <ul class="space-y-2.5 text-body text-[15px]">
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>تخطيط الأعداد والأقسام</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>عناصر نائبة للصفحات وخانات التنسيق</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>إدارة مساحات الإعلانات</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>جاهزية سير العمل مع InDesign</li>
+          <li class="flex gap-2.5"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>معاينة PDF والتعليق عليها</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AI CORE (dark) ================= -->
+<section id="ai" class="bg-ink text-white">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-3xl reveal">
+      <span class="pill text-[12px] text-orange">نواة الذكاء الاصطناعي</span>
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] font-bold mt-3">الذكاء الاصطناعي ليس إضافة. إنه نواة نظام غرفة الأخبار.</h2>
+      <p class="mt-5 text-white/60 text-[1.05rem]">يدعم الذكاء الاصطناعي المحررين والصحفيين في كل مرحلة — دون أن يحلّ محل الحكم التحريري. يبقى المحررون في موضع التحكّم، والذكاء الاصطناعي يسرّع سير العمل.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange">
+        <h3 class="font-display text-lg font-semibold">تطوير القصة</h3>
+        <p class="mt-2 text-white/55 text-[15px]">اقتراح زوايا، وتلخيص الوثائق، والمساعدة في العناوين والمقدمات.</p>
+      </div>
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange" style="transition-delay:.06s">
+        <h3 class="font-display text-lg font-semibold">الجودة والجاهزية</h3>
+        <p class="mt-2 text-white/55 text-[15px]">التحقق من جاهزية سير العمل واكتشاف البيانات أو الفحوص الناقصة.</p>
+      </div>
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange" style="transition-delay:.12s">
+        <h3 class="font-display text-lg font-semibold">التوطين والوصول</h3>
+        <p class="mt-2 text-white/55 text-[15px]">دعم الترجمة والتوطين والعمليات التحريرية متعددة اللغات.</p>
+      </div>
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange" style="transition-delay:.18s">
+        <h3 class="font-display text-lg font-semibold">ذكاء غرفة الأخبار</h3>
+        <p class="mt-2 text-white/55 text-[15px]">تقديم رؤى أداء ومساعدة المحررين على ترتيب أولويات القصص العاجلة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUDIENCES ================= -->
+<section id="audiences" class="bg-white border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-2xl reveal">
+      <h2 class="font-display text-[1.9rem] md:text-[2.5rem] leading-[1.3] text-ink font-bold">مصمَّم لمؤسسات الإعلام الحديثة.</h2>
+      <p class="mt-5 text-body">من الصحف والمجلات اليومية إلى المراكز الإعلامية الحكومية والمجموعات الناشرة متعددة العلامات.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a2 2 0 0 1 2-2h9l5 5v15"/><path d="M8 7h4M8 11h8M8 15h8"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink font-semibold">الصحف والمجلات</h3><p class="mt-1 text-body text-[15px]">تنسيق الطبعات اليومية عبر الأعداد الخاصة والنشر الرقمي.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.05s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink font-semibold">البوابات الإخبارية الرقمية</h3><p class="mt-1 text-body text-[15px]">توسيع عمليات المحتوى بسير عمل مدعوم بالذكاء الاصطناعي وتحليلات فورية.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.1s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-4h4v4"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink font-semibold">المراكز الإعلامية الحكومية</h3><p class="mt-1 text-body text-[15px]">إدارة الاتصالات الرسمية والبيانات الصحفية والنشر متعدد القنوات مع سجلات تدقيق.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink font-semibold">الاتصال المؤسسي</h3><p class="mt-1 text-body text-[15px]">تبسيط سير العمل التحريري الداخلي والخارجي بموافقات منظّمة.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.05s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink font-semibold">المجموعات الناشرة</h3><p class="mt-1 text-body text-[15px]">دعم عمليات متعددة العلامات بتحكّم تحريري مشترك ومستقل.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.1s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink font-semibold">الفرق التحريرية متعددة القنوات</h3><p class="mt-1 text-body text-[15px]">توحيد سير العمل الرقمي والاجتماعي والمطبوع عبر فرق موزّعة.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section id="demo" class="bg-white">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-16">
+    <div class="reveal relative overflow-hidden rounded-2xl bg-gradient-to-bl from-orange to-orange-ink text-white px-8 md:px-14 py-14 md:py-16">
+      <div class="absolute inset-0 grid-bg opacity-[.15]"></div>
+      <div class="relative max-w-2xl">
+        <span class="pill text-[12px] text-white/70">خطّط أسرع. تعاوَن أفضل. انشر أذكى.</span>
+        <h2 class="font-display text-[1.9rem] md:text-[2.7rem] leading-[1.25] font-bold mt-3">حدّث غرفة أخبارك بنظام تحرير أصيل بالذكاء الاصطناعي.</h2>
+        <p class="mt-4 text-white/85 text-[1.05rem]">شاهد نيوزروم247 عملياً عبر جولة مخصّصة.</p>
+        <a href="mailto:hello@newsroom247.net?subject=طلب%20عرض%20توضيحي%20-%20Newsroom247" class="cta-arrow mt-8 inline-flex items-center gap-2 bg-white text-orange-ink font-label text-sm px-7 py-3.5 rounded-md hover:bg-peach transition-colors">
+          اطلب عرضاً توضيحياً
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="offices" class="relative bg-ink text-white/70 overflow-hidden">
+  <div class="relative max-w-shell mx-auto px-5 md:px-8 pt-16 pb-10">
+    <div class="reveal text-center">
+      <span class="pill text-[12px] text-orange">حضور عالمي</span>
+      <h2 class="font-display text-2xl md:text-[2rem] text-white font-bold mt-2">ثلاثة مراكز. نظام واحد لغرفة الأخبار.</h2>
+    </div>
+    <div class="reveal relative mx-auto mt-8 w-full max-w-3xl aspect-[950/620]">
+      <img src="/assets/images/world-map.svg" alt="خريطة العالم توضّح مكاتب نيوزروم247 في ميامي والقاهرة ودبي" class="absolute inset-0 w-full h-full object-contain opacity-[.18]"/>
+      <div class="pin" style="left:28.2%;top:43%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">ميامي</span></div>
+      <div class="pin" style="left:55.3%;top:40.5%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">القاهرة</span></div>
+      <div class="pin" style="left:61%;top:42.5%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">دبي</span></div>
+    </div>
+
+    <div class="relative grid md:grid-cols-12 gap-10 mt-8 pt-10 border-t border-nightline">
+      <div class="md:col-span-4">
+        <img src="/assets/brand/logo.svg" alt="نيوزروم247" class="h-5 w-auto brightness-0 invert opacity-90"/>
+        <p class="mt-4 text-white/50 text-[15px] max-w-xs">نظام تشغيل تحريري أصيل بالذكاء الاصطناعي لمؤسسات الإعلام الحديثة. خطّط أسرع. تعاوَن أفضل. انشر أذكى.</p>
+        <div class="mt-5 flex gap-3">
+          <a href="https://www.facebook.com/Newsroom247" target="_blank" rel="noopener" aria-label="نيوزروم247 على فيسبوك" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68Z"/></svg></a>
+          <a href="#" aria-label="X" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-7-6.2 7H1.4l8.1-9.3L1 2h7l4.9 6.5L18.9 2Zm-2.4 18h1.9L7.6 4H5.5l11 16Z"/></svg></a>
+          <a href="mailto:hello@newsroom247.net" aria-label="البريد الإلكتروني" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+      <div class="md:col-span-8 grid sm:grid-cols-3 gap-8">
+        <div class="flex gap-3">
+          <span class="text-orange shrink-0 mt-0.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="font-label text-[12px] text-white/50">ميامي، الولايات المتحدة</div><p class="mt-1.5 text-white/60 text-[15px]">123 أوشن درايف، جناح 100<br/>فلوريدا 33139</p></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-orange shrink-0 mt-0.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="font-label text-[12px] text-white/50">القاهرة، مصر</div><p class="mt-1.5 text-white/60 text-[15px]">45 شارع النيل، الطابق الخامس<br/>القاهرة 11516</p></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-orange shrink-0 mt-0.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="font-label text-[12px] text-white/50">دبي، الإمارات</div><p class="mt-1.5 text-white/60 text-[15px]">78 شارع النخيل، مكتب 202</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="relative mt-10 pt-6 border-t border-nightline flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-white/40">
+      <p>© 2026 نيوزروم247. من ابتكار logicacode.</p>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-orange transition-colors">تواصل معنا</a>
+        <a href="#" class="hover:text-orange transition-colors">الشركة</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>

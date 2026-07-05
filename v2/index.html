@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Newsroom247 — Run Your Newsroom on an AI Editorial OS</title>
 <meta name="description" content="Newsroom247 is an AI-native editorial operating system — planning, assignments, production, SEO, approvals, publishing, print coordination, and analytics in one workflow."/>
+<link rel="alternate" hreflang="en" href="/v2/"/>
+<link rel="alternate" hreflang="ar" href="/v2/ar/"/>
 <link rel="icon" type="image/svg+xml" href="/assets/brand/icon.svg"/>
 <link rel="icon" type="image/png" href="/assets/brand/icon.png"/>
 <link rel="apple-touch-icon" href="/assets/brand/icon.png"/>
@@ -55,10 +57,17 @@
   .cta-arrow:hover svg { transform: translateX(4px); }
   @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   .floaty { animation: floaty 7s ease-in-out infinite; }
+  /* footer world-map location pins */
+  .pin { position: absolute; transform: translate(-50%, -50%); }
+  .pin-dot { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 9999px; background: #F17A30; box-shadow: 0 0 0 2px rgba(255,255,255,.85), 0 0 14px 2px rgba(241,122,48,.9); }
+  .pin-ring { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 9999px; background: rgba(241,122,48,.45); animation: pin-ping 2.6s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes pin-ping { 0% { transform: scale(1); opacity: .7; } 75%,100% { transform: scale(3.6); opacity: 0; } }
+  .pin-label { position: absolute; left: 50%; bottom: 15px; transform: translateX(-50%); white-space: nowrap; font-family: '"IBM Plex Sans"', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.7); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
     .floaty { animation: none; }
+    .pin-ring { animation: none; }
   }
 </style>
 </head>
@@ -76,7 +85,10 @@
       <a href="#audiences" class="hover:text-orange-ink transition-colors">Who it's for</a>
     </nav>
     <div class="flex items-center gap-3">
-      <a href="#platform" class="hidden sm:inline font-label text-[13px] text-ink/70 hover:text-orange-ink transition-colors">Explore</a>
+      <a href="/v2/ar/" hreflang="ar" lang="ar" aria-label="التبديل إلى العربية" class="inline-flex items-center gap-1.5 font-label text-[13px] text-ink/70 hover:text-orange-ink hover:border-orange border border-line rounded-md px-2.5 py-1.5 transition-colors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+        العربية
+      </a>
       <a href="#demo" class="cta-arrow inline-flex items-center gap-2 bg-orange text-white font-label text-[13px] px-4 py-2 rounded-md hover:bg-orange-ink transition-colors">
         Request a Demo
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -460,34 +472,48 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-ink text-white/70">
-  <div class="max-w-shell mx-auto px-5 md:px-8 py-16">
-    <div class="grid md:grid-cols-12 gap-10">
+<footer id="offices" class="relative bg-ink text-white/70 overflow-hidden">
+  <div class="relative max-w-shell mx-auto px-5 md:px-8 pt-16 pb-10">
+    <!-- Global presence: world map with location pins -->
+    <div class="reveal text-center">
+      <span class="pill text-[11px] uppercase text-orange">Global Presence</span>
+      <h2 class="font-display text-2xl md:text-[2rem] text-white font-medium mt-2">Three hubs. One newsroom OS.</h2>
+    </div>
+    <div class="reveal relative mx-auto mt-8 w-full max-w-3xl aspect-[950/620]">
+      <img src="/assets/images/world-map.svg" alt="World map showing Newsroom247 offices in Miami, Cairo, and Dubai" class="absolute inset-0 w-full h-full object-contain opacity-[.18]"/>
+      <div class="pin" style="left:28.2%;top:43%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">Miami</span></div>
+      <div class="pin" style="left:55.3%;top:40.5%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">Cairo</span></div>
+      <div class="pin" style="left:61%;top:42.5%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">Dubai</span></div>
+    </div>
+
+    <!-- Info -->
+    <div class="relative grid md:grid-cols-12 gap-10 mt-8 pt-10 border-t border-nightline">
       <div class="md:col-span-4">
         <img src="/assets/brand/logo.svg" alt="Newsroom247" class="h-5 w-auto brightness-0 invert opacity-90"/>
         <p class="mt-4 text-white/50 text-[15px] max-w-xs">An AI-native editorial operating system for modern media organizations. Plan faster. Collaborate better. Publish smarter.</p>
         <div class="mt-5 flex gap-3">
+          <a href="https://www.facebook.com/Newsroom247" target="_blank" rel="noopener" aria-label="Newsroom247 on Facebook" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg></a>
           <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68Z"/></svg></a>
           <a href="#" aria-label="X" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-7-6.2 7H1.4l8.1-9.3L1 2h7l4.9 6.5L18.9 2Zm-2.4 18h1.9L7.6 4H5.5l11 16Z"/></svg></a>
-          <a href="#" aria-label="Email" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+          <a href="mailto:hello@newsroom247.net" aria-label="Email" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
         </div>
       </div>
       <div class="md:col-span-8 grid sm:grid-cols-3 gap-8">
-        <div>
-          <div class="font-label text-[11px] uppercase tracking-wider text-white/40">Miami, US</div>
-          <p class="mt-2 text-white/60 text-[15px]">123 Ocean Drive, Suite 100<br/>FL 33139</p>
+        <div class="flex gap-3">
+          <span class="text-orange shrink-0 mt-0.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="font-label text-[11px] uppercase tracking-wider text-white/50">Miami, US</div><p class="mt-1.5 text-white/60 text-[15px]">123 Ocean Drive, Suite 100<br/>FL 33139</p></div>
         </div>
-        <div>
-          <div class="font-label text-[11px] uppercase tracking-wider text-white/40">Cairo, Egypt</div>
-          <p class="mt-2 text-white/60 text-[15px]">45 Nile Street, Floor 5<br/>Cairo 11516</p>
+        <div class="flex gap-3">
+          <span class="text-orange shrink-0 mt-0.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="font-label text-[11px] uppercase tracking-wider text-white/50">Cairo, Egypt</div><p class="mt-1.5 text-white/60 text-[15px]">45 Nile Street, Floor 5<br/>Cairo 11516</p></div>
         </div>
-        <div>
-          <div class="font-label text-[11px] uppercase tracking-wider text-white/40">Dubai, UAE</div>
-          <p class="mt-2 text-white/60 text-[15px]">78 Palm Avenue, Office 202</p>
+        <div class="flex gap-3">
+          <span class="text-orange shrink-0 mt-0.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="font-label text-[11px] uppercase tracking-wider text-white/50">Dubai, UAE</div><p class="mt-1.5 text-white/60 text-[15px]">78 Palm Avenue, Office 202</p></div>
         </div>
       </div>
     </div>
-    <div class="mt-12 pt-6 border-t border-nightline flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-white/40">
+    <div class="relative mt-10 pt-6 border-t border-nightline flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-white/40">
       <p>© 2026 Newsroom247. Innovated by logicacode.</p>
       <div class="flex gap-5">
         <a href="#" class="hover:text-orange transition-colors">Contact Us</a>
