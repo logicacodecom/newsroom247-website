@@ -2,238 +2,535 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Newsroom247 - Editorial Intelligence System</title>
-<meta name="description" content="The ultimate control room for high-stakes journalism. Unify digital and print publishing, manage resources, and deploy AI safely."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Newsroom247 — Run Your Newsroom on an AI Editorial OS</title>
+<meta name="description" content="Newsroom247 is an AI-native editorial operating system — planning, assignments, production, SEO, approvals, publishing, print coordination, and analytics in one workflow."/>
+<link rel="alternate" hreflang="en" href="/"/>
+<link rel="alternate" hreflang="ar" href="/ar/"/>
+<link rel="alternate" hreflang="x-default" href="/"/>
 <link rel="icon" type="image/svg+xml" href="/assets/brand/icon.svg"/>
 <link rel="icon" type="image/png" href="/assets/brand/icon.png"/>
 <link rel="apple-touch-icon" href="/assets/brand/icon.png"/>
-<!-- ponytail: Tailwind CDN is fine for a single static marketing page; add a build step only if this grows into a real app. -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=IBM+Plex+Sans:wght@500;600&amp;family=Source+Sans+3:wght@400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-variant": "#dae3f4",
-                        "on-error-container": "#93000a",
-                        "inverse-on-surface": "#eaf1ff",
-                        "outline": "#8a7266",
-                        "on-tertiary-fixed": "#001e2c",
-                        "error": "#ba1a1a",
-                        "on-primary-fixed": "#331100",
-                        "on-error": "#ffffff",
-                        "inverse-primary": "#ffb690",
-                        "on-secondary-fixed-variant": "#464747",
-                        "surface-base": "#FFFFFF",
-                        "secondary-fixed": "#e4e2e2",
-                        "inverse-surface": "#28313e",
-                        "on-surface": "#131c28",
-                        "primary-fixed": "#ffdbca",
-                        "on-tertiary-container": "#00384d",
-                        "status-success": "#1EB06C",
-                        "surface-container-highest": "#dae3f4",
-                        "surface-subtle": "#E9ECEF",
-                        "primary-container": "#f17a30",
-                        "surface-container-low": "#eff4ff",
-                        "surface-container-lowest": "#ffffff",
-                        "tertiary-fixed-dim": "#79d1ff",
-                        "primary-fixed-dim": "#ffb690",
-                        "on-tertiary-fixed-variant": "#004c68",
-                        "on-secondary": "#ffffff",
-                        "on-secondary-fixed": "#1b1c1c",
-                        "background": "#f8f9ff",
-                        "tertiary-fixed": "#c3e8ff",
-                        "surface-dim": "#d1daeb",
-                        "on-secondary-container": "#646464",
-                        "outline-variant": "#dec1b3",
-                        "tertiary": "#006689",
-                        "primary": "#9d4400",
-                        "error-container": "#ffdad6",
-                        "surface-tint": "#9d4400",
-                        "surface-bright": "#f8f9ff",
-                        "status-alert": "#F05428",
-                        "on-tertiary": "#ffffff",
-                        "on-background": "#131c28",
-                        "on-primary": "#ffffff",
-                        "tertiary-container": "#00a7df",
-                        "secondary-fixed-dim": "#c8c6c6",
-                        "secondary": "#5e5e5e",
-                        "surface-muted": "#F8F9FA",
-                        "secondary-container": "#e4e2e2",
-                        "surface": "#f8f9ff",
-                        "on-primary-fixed-variant": "#783200",
-                        "on-surface-variant": "#574238",
-                        "surface-container-high": "#e0e9fa",
-                        "status-info": "#2FA0A3",
-                        "on-primary-container": "#582300",
-                        "surface-container": "#e6eeff"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "margin-desktop": "32px",
-                        "base": "4px",
-                        "gutter": "16px",
-                        "margin-mobile": "16px",
-                        "column-gap": "24px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["\"Source Sans 3\""],
-                        "body-sm": ["\"Source Sans 3\""],
-                        "label-md": ["IBM Plex Sans"],
-                        "label-sm": ["IBM Plex Sans"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "body-lg": ["\"Source Sans 3\""],
-                        "headline-lg-mobile": ["Hanken Grotesk"],
-                        "headline-xl": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
-                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
-                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
-                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
-                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
-                    }
-                },
-            },
-        }
-    </script>
+<!-- ponytail: Tailwind CDN keeps this a zero-build static page, consistent with the live site. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#141b26', body: '#514c45', faint: '#8a857e',
+          orange: '#F17A30', 'orange-ink': '#9d4400',
+          coral: '#EF4E23', peach: '#FFE7D8',
+          teal: '#2FA0A3', green: '#1EB06C',
+          paper: '#FFFFFF', sand: '#F7F2EB', line: '#EAE4DC',
+          nightline: '#2a3342'
+        },
+        fontFamily: {
+          display: ['Fraunces', 'Georgia', 'serif'],
+          sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          label: ['"IBM Plex Sans"', 'system-ui', 'sans-serif']
+        },
+        maxWidth: { shell: '1200px' }
+      }
+    }
+  }
+</script>
 <style>
-        html, body { overflow-x: hidden; }
-        body { background-color: #F8F9FA; color: #131c28; }
-        .grid-bg {
-            background-size: 24px 24px;
-            background-image:
-                linear-gradient(to right, rgba(233, 236, 239, 0.5) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(233, 236, 239, 0.5) 1px, transparent 1px);
-        }
-    </style>
+  html { scroll-behavior: smooth; }
+  body { font-family: '"Source Sans 3"', system-ui, sans-serif; color: #514c45; background: #fff; }
+  .font-display { font-family: 'Fraunces', Georgia, serif; }
+  .grid-bg {
+    background-size: 26px 26px;
+    background-image:
+      linear-gradient(to right, rgba(20,27,38,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(20,27,38,.045) 1px, transparent 1px);
+  }
+  .pill { font-family: '"IBM Plex Sans"', sans-serif; letter-spacing: .06em; }
+  /* scroll-reveal (Gamma-style fade-up), native + reduced-motion aware */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); will-change: opacity, transform; }
+  .reveal.in { opacity: 1; transform: none; }
+  .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .lift:hover { transform: translateY(-4px); }
+  .cta-arrow svg { transition: transform .2s ease; }
+  .cta-arrow:hover svg { transform: translateX(4px); }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .floaty { animation: floaty 7s ease-in-out infinite; }
+  /* footer world-map location pins */
+  .pin { position: absolute; transform: translate(-50%, -50%); }
+  .pin-dot { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 9999px; background: #F17A30; box-shadow: 0 0 0 2px rgba(255,255,255,.85), 0 0 14px 2px rgba(241,122,48,.9); }
+  .pin-ring { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 9999px; background: rgba(241,122,48,.45); animation: pin-ping 2.6s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes pin-ping { 0% { transform: scale(1); opacity: .7; } 75%,100% { transform: scale(3.6); opacity: 0; } }
+  .pin-label { position: absolute; left: 50%; bottom: 15px; transform: translateX(-50%); white-space: nowrap; font-family: '"IBM Plex Sans"', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.7); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+    .floaty { animation: none; }
+    .pin-ring { animation: none; }
+  }
+</style>
 </head>
-<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
-<!-- TopNavBar -->
-<header class="bg-surface-base border-b border-outline-variant sticky top-0 z-50">
-<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 max-w-[1440px] mx-auto">
-<div class="flex items-center gap-8">
-<a class="flex-shrink-0" href="/" aria-label="Newsroom247 home">
-<img alt="Newsroom247" class="h-6 w-auto" src="/assets/brand/logo.svg"/>
-</a>
-<nav class="hidden md:flex gap-6">
-<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-opacity duration-150" href="#">Product</a>
-<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Solutions</a>
-<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Intelligence</a>
-<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Pricing</a>
-<a class="font-label-md text-label-md text-secondary hover:text-primary hover:bg-surface-subtle transition-colors duration-200 px-2 py-1 rounded" href="#">Resources</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<a class="hidden sm:inline font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Log In</a>
-<a class="bg-primary-container text-on-error font-label-md text-label-md px-4 py-2 rounded flex items-center gap-2 hover:bg-surface-tint transition-colors" href="#">
-                    Request Demo <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</div>
+<body class="antialiased text-[17px] leading-relaxed">
+
+<!-- ================= NAV ================= -->
+<header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center"><img src="/assets/brand/logo.svg" alt="Newsroom247" class="h-5 w-auto"/></a>
+    <nav class="hidden lg:flex items-center gap-7 font-label text-[13px] text-ink/70">
+      <a href="#platform" class="hover:text-orange-ink transition-colors">Platform</a>
+      <a href="#modules" class="hover:text-orange-ink transition-colors">Modules</a>
+      <a href="#seo" class="hover:text-orange-ink transition-colors">SEO</a>
+      <a href="#ai" class="hover:text-orange-ink transition-colors">AI Core</a>
+      <a href="#audiences" class="hover:text-orange-ink transition-colors">Who it's for</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="/ar/" hreflang="ar" lang="ar" aria-label="التبديل إلى العربية" class="inline-flex items-center gap-1.5 font-label text-[13px] text-ink/70 hover:text-orange-ink hover:border-orange border border-line rounded-md px-2.5 py-1.5 transition-colors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+        العربية
+      </a>
+      <a href="#demo" class="cta-arrow inline-flex items-center gap-2 bg-orange text-white font-label text-[13px] px-4 py-2 rounded-md hover:bg-orange-ink transition-colors">
+        Request a Demo
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
 </header>
-<!-- Main Content -->
-<main class="flex-grow">
-<!-- Hero Section -->
-<section class="relative bg-surface-base grid-bg pt-16 md:pt-24 pb-16 overflow-hidden border-b border-surface-subtle">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-column-gap items-center relative z-10">
-<div class="lg:col-span-5 min-w-0 flex flex-col items-start space-y-6">
-<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-muted border border-surface-subtle rounded-sm">
-<span class="w-2 h-2 rounded-full bg-status-success"></span>
-<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Editorial workflow</span>
-</div>
-<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface">AI Editorial OS <i style="font-weight: normal;">for </i>Modern Newsrooms</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-                        The ultimate control room for high-stakes journalism. Unify digital and print publishing, manage resources, and deploy AI safely—all in one dense, highly performant environment.
-                    </p>
-<div class="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
-<a class="bg-primary-container text-on-error font-label-md text-label-md px-6 py-3 rounded flex items-center justify-center hover:bg-surface-tint transition-colors w-full sm:w-auto" href="#">
-                            Deploy Infrastructure
-                        </a>
-<a class="border border-secondary text-secondary font-label-md text-label-md px-6 py-3 rounded flex items-center justify-center hover:bg-surface-muted transition-colors w-full sm:w-auto" href="#">
-                            View Documentation
-                        </a>
-</div>
-</div>
-<div class="lg:col-span-7 min-w-0 mt-12 lg:mt-0 relative">
-<div class="bg-surface-base border border-surface-subtle rounded-lg shadow-sm overflow-hidden flex flex-col">
-<img class="w-full h-auto object-cover" src="/assets/images/hero-dashboard.png" alt="Newsroom247 editorial dashboard shown on a tablet in a dark blue, control-room aesthetic."/>
-</div>
-</div>
-</div>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="relative overflow-hidden bg-white grid-bg border-b border-line">
+  <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-peach/40 via-white/0 to-white"></div>
+  <div class="relative max-w-shell mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-14 md:pb-20">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <div class="flex flex-wrap justify-center gap-2 mb-6">
+        <span class="pill text-[11px] uppercase bg-peach text-orange-ink px-2.5 py-1 rounded">AI-Native Editorial OS</span>
+        <span class="pill text-[11px] uppercase bg-peach text-orange-ink px-2.5 py-1 rounded">Digital + Print</span>
+        <span class="pill text-[11px] uppercase bg-peach text-orange-ink px-2.5 py-1 rounded">SEO-Ready</span>
+        <span class="pill text-[11px] uppercase bg-peach text-orange-ink px-2.5 py-1 rounded">Human Editorial Control</span>
+      </div>
+      <h1 class="font-display text-[2.6rem] md:text-[3.8rem] leading-[1.04] text-ink font-medium tracking-[-0.01em]">
+        Run Your Newsroom on an <span class="italic text-orange-ink">AI Editorial OS</span>
+      </h1>
+      <p class="mt-6 text-body text-[1.15rem] max-w-2xl mx-auto">
+        Newsroom247 is an intelligent platform where AI supports every stage of the editorial lifecycle — from planning and assignments to production, SEO, approvals, publishing, print coordination, analytics, and decision support.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#demo" class="cta-arrow inline-flex items-center justify-center gap-2 bg-orange text-white font-label text-sm px-6 py-3.5 rounded-md hover:bg-orange-ink transition-colors">
+          Request a Demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#platform" class="inline-flex items-center justify-center border border-ink/25 text-ink font-label text-sm px-6 py-3.5 rounded-md hover:border-orange hover:text-orange-ink transition-colors">
+          Explore the Platform
+        </a>
+      </div>
+    </div>
+    <figure class="mt-14 md:mt-16 reveal" style="transition-delay:.1s">
+      <div class="relative mx-auto">
+        <div class="absolute -inset-x-8 -inset-y-6 bg-orange/10 blur-3xl rounded-[40px] pointer-events-none"></div>
+        <div class="relative rounded-xl border border-line bg-sand ring-1 ring-ink/5 shadow-2xl shadow-ink/15 overflow-hidden min-h-[260px] md:min-h-[520px] grid place-items-center">
+          <img src="/assets/images/editor.png" alt="The Newsroom247 Editor — story queue, editorial workspace, and metadata panel, with English/Arabic and RTL support" loading="eager" class="w-full block"/>
+        </div>
+      </div>
+      <figcaption class="mt-3.5 text-center font-label text-[12px] text-faint">The Newsroom247 Editor — one workspace for reporters, editors, and publishers, in English &amp; Arabic.</figcaption>
+    </figure>
+  </div>
 </section>
+
+<!-- ================= COLLABORATION ================= -->
+<section id="platform" class="bg-sand border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-2xl reveal">
+      <span class="pill text-[11px] uppercase text-orange-ink">Newsroom247</span>
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] text-ink font-medium mt-3">Keep reporters, editors, designers, and publishers aligned.</h2>
+      <p class="mt-5 text-body">Newsroom247 replaces fragmented communication with structured, role-based collaboration — keeping every stakeholder in sync from assignment to publication.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- card -->
+      <div class="reveal lift bg-white border border-line rounded-xl p-6">
+        <div class="w-11 h-11 rounded-lg bg-orange/12 text-orange flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink">Comments &amp; Mentions</h3>
+        <p class="mt-2 text-body text-[15px]">Inline feedback and @mentions keep conversations tied to the story.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.06s">
+        <div class="w-11 h-11 rounded-lg bg-coral/12 text-coral flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink">Assignments &amp; Deadlines</h3>
+        <p class="mt-2 text-body text-[15px]">Clear ownership and due dates visible across the entire newsroom.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.12s">
+        <div class="w-11 h-11 rounded-lg bg-orange/12 text-orange flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink">Desk-Level Queues</h3>
+        <p class="mt-2 text-body text-[15px]">Each desk maintains its own prioritized story queue.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6">
+        <div class="w-11 h-11 rounded-lg bg-coral/12 text-coral flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink">Approval History</h3>
+        <p class="mt-2 text-body text-[15px]">Full audit trail of reviews, decisions, and editorial changes.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.06s">
+        <div class="w-11 h-11 rounded-lg bg-orange/12 text-orange flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink">Role-Based Permissions</h3>
+        <p class="mt-2 text-body text-[15px]">Control access by role, desk, or workflow stage.</p>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-6" style="transition-delay:.12s">
+        <div class="w-11 h-11 rounded-lg bg-coral/12 text-coral flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-ink">Notifications</h3>
+        <p class="mt-2 text-body text-[15px]">Real-time alerts for assignments, approvals, and deadlines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEMS ================= -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-2xl reveal">
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] text-ink font-medium">Newsrooms are moving faster than their tools.</h2>
+      <p class="mt-5 text-body">Editorial teams rely on email, WhatsApp, spreadsheets, and legacy CMS tools — with no unified workflow. Stories slip through cracks, approvals stall, and AI is used manually instead of being embedded in the process.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="reveal lift rounded-xl p-6 border-l-4 border-coral bg-coral/5">
+        <h3 class="font-display text-xl text-ink">Stories Hard to Track</h3>
+        <p class="mt-2 text-body text-[15px]">No unified visibility across desks and deadlines.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-l-4 border-coral bg-coral/5" style="transition-delay:.05s">
+        <h3 class="font-display text-xl text-ink">Unclear Approvals</h3>
+        <p class="mt-2 text-body text-[15px]">Manual review chains create bottlenecks and confusion.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-l-4 border-coral bg-coral/5" style="transition-delay:.1s">
+        <h3 class="font-display text-xl text-ink">SEO Too Late</h3>
+        <p class="mt-2 text-body text-[15px]">Optimization happens after writing, not during.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-l-4 border-coral bg-coral/5">
+        <h3 class="font-display text-xl text-ink">Digital vs. Print Silos</h3>
+        <p class="mt-2 text-body text-[15px]">Separate workflows create duplication and missed coordination.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-l-4 border-coral bg-coral/5" style="transition-delay:.05s">
+        <h3 class="font-display text-xl text-ink">Fragmented Collaboration</h3>
+        <p class="mt-2 text-body text-[15px]">Teams scattered across tools with no shared context.</p>
+      </div>
+      <div class="reveal lift rounded-xl p-6 border-l-4 border-coral bg-coral/5" style="transition-delay:.1s">
+        <h3 class="font-display text-xl text-ink">No Real-Time Visibility</h3>
+        <p class="mt-2 text-body text-[15px]">Managers lack live insight into editorial operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUTION / 8 MODULES ================= -->
+<section id="modules" class="bg-sand border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-3xl reveal">
+      <span class="pill text-[11px] uppercase text-orange-ink">8 Modules</span>
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] text-ink font-medium mt-3">One AI-native operating system for the entire editorial lifecycle.</h2>
+      <p class="mt-5 text-body">Eight purpose-built modules — from planning and desks to production, publishing, and print — mirror how real newsrooms actually work, with no disconnected tools.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+      <!-- module -->
+      <div class="reveal">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Newsroom Dashboard</h3>
+        <p class="mt-1.5 text-body text-[15px]">Live view of assignments, deadlines, and publishing status.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.05s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Story Workspace</h3>
+        <p class="mt-1.5 text-body text-[15px]">Structured editor for assets, metadata, and channel prep.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4v7a4 4 0 0 1-4 4H6"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Workflow Builder</h3>
+        <p class="mt-1.5 text-body text-[15px]">Configure editorial states, transitions, and approval rules.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h8M8 18h5"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Editorial Calendar</h3>
+        <p class="mt-1.5 text-body text-[15px]">Plan coverage, interviews, and publishing schedules.</p>
+      </div>
+      <div class="reveal">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-12 0"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Desk Management</h3>
+        <p class="mt-1.5 text-body text-[15px]">Organize teams by beat, section, or custom desk.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.05s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Publishing Channels</h3>
+        <p class="mt-1.5 text-body text-[15px]">Prepare and publish for web, social, and distribution.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Print Edition Desk</h3>
+        <p class="mt-1.5 text-body text-[15px]">Plan issues, pages, ad space, and designer handoffs.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 4-6"/></svg>
+        </div>
+        <h3 class="font-display text-lg text-ink">Analytics &amp; Intelligence</h3>
+        <p class="mt-1.5 text-body text-[15px]">Turn newsroom activity into operational insight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEO ================= -->
+<section id="seo" class="bg-white border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <span class="pill text-[11px] uppercase text-orange-ink">SEO Intelligence</span>
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] text-ink font-medium mt-3">SEO built into the editorial workflow.</h2>
+      <p class="mt-5 text-body">AI helps improve online visibility before publishing — not as an afterthought, but as a natural part of the writing and review process.</p>
+      <ul class="mt-8 space-y-4">
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">SEO Headline Suggestions</strong> — search-friendly headlines without sacrificing editorial quality.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">Slug &amp; Metadata Assistance</strong> — auto-generate slugs, meta descriptions, and structured metadata.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">Keyword Recommendations</strong> — contextual suggestions based on story topic and audience.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">Content Readiness Checks</strong> — validate completeness before a story reaches the approval stage.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">Internal Linking Suggestions</strong> — surface relevant existing content for stronger SEO structure.</span></li>
+        <li class="flex gap-3"><span class="mt-1 text-orange shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><strong class="text-ink font-semibold">Channel-Specific Optimization</strong> — tailor formatting and metadata for each publishing channel.</span></li>
+      </ul>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <div class="rounded-xl border border-line bg-ink shadow-2xl shadow-ink/20 overflow-hidden">
+        <div class="flex items-center gap-1.5 px-4 h-9 border-b border-nightline">
+          <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span><span class="w-2.5 h-2.5 rounded-full bg-white/20"></span><span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+          <span class="ml-3 font-label text-[11px] text-white/40">Story Workspace · SEO Assistant</span>
+        </div>
+        <div class="p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-label text-[11px] uppercase text-white/40">SEO Score</span>
+            <span class="font-label text-[11px] text-green">Strong · 86</span>
+          </div>
+          <div class="h-1.5 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[86%] bg-gradient-to-r from-orange to-green"></div></div>
+          <div class="rounded-lg bg-white/5 border border-nightline p-3">
+            <div class="font-label text-[11px] uppercase text-orange mb-1">Headline suggestion</div>
+            <div class="text-white/85 text-sm">“City Council Approves Waterfront Plan After Months of Debate”</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="rounded-lg bg-white/5 border border-nightline p-3"><div class="font-label text-[11px] text-white/40 mb-1">Slug</div><div class="text-white/80 text-[13px]">/waterfront-plan-approved</div></div>
+            <div class="rounded-lg bg-white/5 border border-nightline p-3"><div class="font-label text-[11px] text-white/40 mb-1">Readiness</div><div class="text-green text-[13px]">All checks passed</div></div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="pill text-[10px] uppercase bg-white/10 text-white/60 px-2 py-0.5 rounded">waterfront</span>
+            <span class="pill text-[10px] uppercase bg-white/10 text-white/60 px-2 py-0.5 rounded">city council</span>
+            <span class="pill text-[10px] uppercase bg-white/10 text-white/60 px-2 py-0.5 rounded">urban planning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIGITAL + PRINT ================= -->
+<section class="bg-sand border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-3xl reveal">
+      <span class="pill text-[11px] uppercase text-orange-ink">One Unified Platform</span>
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] text-ink font-medium mt-3">Digital-first. Print-aware. AI-powered.</h2>
+      <p class="mt-5 text-body">Newsroom247 serves organizations that publish online while managing serious print operations — one unified platform, zero duplication.</p>
+    </div>
+    <div class="mt-12 grid md:grid-cols-2 gap-4">
+      <div class="reveal lift bg-white border border-line rounded-xl p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-10 h-10 rounded-lg bg-orange/12 text-orange flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
+          <h3 class="font-display text-xl text-ink">Digital Publishing Workflow</h3>
+        </div>
+        <ul class="space-y-2.5 text-body text-[15px]">
+          <li class="flex gap-2.5"><span class="text-orange mt-1.5 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>Website publishing with SEO metadata</li>
+          <li class="flex gap-2.5"><span class="text-orange mt-1.5 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>Social media preparation and scheduling</li>
+          <li class="flex gap-2.5"><span class="text-orange mt-1.5 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>Channel-specific optimization</li>
+          <li class="flex gap-2.5"><span class="text-orange mt-1.5 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>Real-time editorial approval tracking</li>
+          <li class="flex gap-2.5"><span class="text-orange mt-1.5 w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>AI-powered content readiness checks</li>
+        </ul>
+      </div>
+      <div class="reveal lift bg-white border border-line rounded-xl p-8" style="transition-delay:.08s">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-10 h-10 rounded-lg bg-coral/12 text-coral flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg></span>
+          <h3 class="font-display text-xl text-ink">Print Edition Planning</h3>
+        </div>
+        <ul class="space-y-2.5 text-body text-[15px]">
+          <li class="flex gap-2.5"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>Issue and section planning</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>Page placeholders and layout slots</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>Ad space management</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>InDesign workflow readiness</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-coral shrink-0"></span>PDF preview and annotation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AI CORE (dark) ================= -->
+<section id="ai" class="bg-ink text-white">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-3xl reveal">
+      <span class="pill text-[11px] uppercase text-orange">AI Core</span>
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] font-medium mt-3">AI is not an add-on. It is the core of the newsroom OS.</h2>
+      <p class="mt-5 text-white/60 text-[1.05rem]">AI supports editors and journalists at every stage — without replacing editorial judgment. Editors stay in control; AI accelerates the workflow.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange">
+        <h3 class="font-display text-lg">Story Development</h3>
+        <p class="mt-2 text-white/55 text-[15px]">Suggest angles, summarize documents, and assist with headlines and intros.</p>
+      </div>
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange" style="transition-delay:.06s">
+        <h3 class="font-display text-lg">Quality &amp; Readiness</h3>
+        <p class="mt-2 text-white/55 text-[15px]">Validate workflow readiness and detect missing metadata or checks.</p>
+      </div>
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange" style="transition-delay:.12s">
+        <h3 class="font-display text-lg">Localization &amp; Reach</h3>
+        <p class="mt-2 text-white/55 text-[15px]">Support translation, localization, and multilingual editorial operations.</p>
+      </div>
+      <div class="reveal rounded-xl border border-nightline bg-white/[.03] p-6 border-t-2 border-t-orange" style="transition-delay:.18s">
+        <h3 class="font-display text-lg">Newsroom Intelligence</h3>
+        <p class="mt-2 text-white/55 text-[15px]">Provide performance insights and help editors prioritize urgent stories.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUDIENCES ================= -->
+<section id="audiences" class="bg-white border-b border-line">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="max-w-2xl reveal">
+      <h2 class="font-display text-[2rem] md:text-[2.7rem] leading-[1.1] text-ink font-medium">Designed for modern media organizations.</h2>
+      <p class="mt-5 text-body">From daily newspapers and magazines to government media centers and multi-brand publishing groups.</p>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a2 2 0 0 1 2-2h9l5 5v15"/><path d="M8 7h4M8 11h8M8 15h8"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink">Newspapers &amp; Magazines</h3><p class="mt-1 text-body text-[15px]">Coordinate daily editions across special issues and digital publishing.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.05s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink">Digital News Portals</h3><p class="mt-1 text-body text-[15px]">Scale content operations with AI-assisted workflows and real-time analytics.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.1s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-4h4v4"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink">Government Media Centers</h3><p class="mt-1 text-body text-[15px]">Manage official communications, press releases, and multi-channel publishing with audit trails.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink">Corporate Communications</h3><p class="mt-1 text-body text-[15px]">Streamline internal and external editorial workflows with structured approvals.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.05s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink">Publishing Groups</h3><p class="mt-1 text-body text-[15px]">Support multi-brand operations with shared and independent editorial control.</p></div>
+      </div>
+      <div class="reveal lift flex items-start gap-4 bg-sand rounded-xl p-5 border border-line" style="transition-delay:.1s">
+        <span class="w-10 h-10 rounded-lg bg-white border border-line text-orange flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><h3 class="font-display text-lg text-ink">Multi-Channel Editorial Teams</h3><p class="mt-1 text-body text-[15px]">Unify digital, social, and print workflows across distributed teams.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section id="demo" class="bg-white">
+  <div class="max-w-shell mx-auto px-5 md:px-8 py-16">
+    <div class="reveal relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange to-orange-ink text-white px-8 md:px-14 py-14 md:py-16">
+      <div class="absolute inset-0 grid-bg opacity-[.15]"></div>
+      <div class="relative max-w-2xl">
+        <span class="pill text-[11px] uppercase text-white/70">Plan faster. Collaborate better. Publish smarter.</span>
+        <h2 class="font-display text-[2rem] md:text-[3rem] leading-[1.05] font-medium mt-3">Modernize your newsroom with an AI-native editorial OS.</h2>
+        <p class="mt-4 text-white/85 text-[1.05rem]">See Newsroom247 in action with a personalized walkthrough.</p>
+        <a href="mailto:contact@logicacode.com?subject=Newsroom247%20Demo%20Request" class="cta-arrow mt-8 inline-flex items-center gap-2 bg-white text-orange-ink font-label text-sm px-7 py-3.5 rounded-md hover:bg-peach transition-colors">
+          Request a Demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
-<!-- Footer -->
-<footer class="bg-surface-base border-t border-surface-subtle">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-12">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<div class="md:col-span-4 flex flex-col gap-6">
-<div class="flex flex-col gap-4">
-<span class="font-headline-md text-headline-md font-bold text-on-surface">Editorial Intelligence System</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
-                        The ultimate control room for high-stakes journalism. Unify digital and print publishing, manage resources, and deploy AI safely.
-                    </p>
-</div>
-<div class="flex gap-4">
-<a class="text-secondary hover:text-primary transition-colors" href="#" aria-label="Documentation"><span class="material-symbols-outlined">book</span></a>
-<a class="text-secondary hover:text-primary transition-colors" href="#" aria-label="Chat"><span class="material-symbols-outlined">chat</span></a>
-<a class="text-secondary hover:text-primary transition-colors" href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a>
-</div>
-</div>
-<div class="md:col-span-2 flex flex-col gap-4">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Product</span>
-<nav class="flex flex-col gap-2">
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Documentation</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Reference</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Changelog</a>
-</nav>
-</div>
-<div class="md:col-span-2 flex flex-col gap-4">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Company</span>
-<nav class="flex flex-col gap-2">
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Status</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
-</nav>
-</div>
-<div class="md:col-span-2 flex flex-col gap-4">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Legal</span>
-<nav class="flex flex-col gap-2">
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Compliance</a>
-</nav>
-</div>
-<div class="md:col-span-2 flex md:justify-end">
-<a class="border border-secondary text-secondary font-label-md text-label-md px-4 py-2 rounded hover:bg-surface-muted transition-colors self-start" href="#">Sign In</a>
-</div>
-</div>
-<div class="mt-12 pt-8 border-t border-surface-subtle flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-                © 2026 Editorial Intelligence System. All rights reserved.
-            </p>
-<div class="flex items-center gap-2 text-secondary hover:text-primary cursor-pointer transition-colors">
-<span class="material-symbols-outlined text-[18px]">language</span>
-<span class="font-label-md text-label-md">English (US)</span>
-</div>
-</div>
-</div>
+
+<!-- ================= FOOTER ================= -->
+<footer id="offices" class="relative bg-ink text-white/70 overflow-hidden">
+  <div class="relative max-w-shell mx-auto px-5 md:px-8 pt-16 pb-10">
+    <!-- Global presence: world map with location pins -->
+    <div class="reveal text-center">
+      <span class="pill text-[11px] uppercase text-orange">Global Presence</span>
+      <h2 class="font-display text-2xl md:text-[2rem] text-white font-medium mt-2">Three hubs. One newsroom OS.</h2>
+    </div>
+    <div class="reveal relative mx-auto mt-8 w-full max-w-3xl aspect-[950/620]">
+      <img src="/assets/images/world-map.svg" alt="World map showing Newsroom247 offices in Miami, Cairo, and Dubai" class="absolute inset-0 w-full h-full object-contain opacity-[.18]"/>
+      <div class="pin" style="left:28.2%;top:43%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">Miami</span></div>
+      <div class="pin" style="left:55.3%;top:40.5%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">Cairo</span></div>
+      <div class="pin" style="left:61%;top:42.5%"><span class="pin-ring"></span><span class="pin-dot"></span><span class="pin-label">Dubai</span></div>
+    </div>
+
+    <!-- Info -->
+    <div class="relative grid md:grid-cols-12 gap-10 mt-8 pt-10 border-t border-nightline">
+      <div class="md:col-span-6">
+        <img src="/assets/brand/logo.svg" alt="Newsroom247" class="h-5 w-auto brightness-0 invert opacity-90"/>
+        <p class="mt-4 text-white/50 text-[15px] max-w-xs">An AI-native editorial operating system for modern media organizations. Plan faster. Collaborate better. Publish smarter.</p>
+        <div class="mt-5 flex gap-3">
+          <a href="https://www.facebook.com/Newsroom247" target="_blank" rel="noopener" aria-label="Newsroom247 on Facebook" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://www.linkedin.com/company/logicacode" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68Z"/></svg></a>
+          <a href="#" aria-label="X" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-7-6.2 7H1.4l8.1-9.3L1 2h7l4.9 6.5L18.9 2Zm-2.4 18h1.9L7.6 4H5.5l11 16Z"/></svg></a>
+          <a href="https://github.com/logicacodecom" target="_blank" rel="noopener" aria-label="GitHub" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.46-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.81-4.58 5.06.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.59.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+          <a href="mailto:contact@logicacode.com" aria-label="Email" class="w-9 h-9 rounded-lg border border-nightline flex items-center justify-center hover:border-orange hover:text-orange transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+      <div class="md:col-span-6 flex flex-col gap-3 md:items-end">
+        <div class="font-label text-[11px] uppercase tracking-wider text-white/40">Get in touch</div>
+        <a href="mailto:contact@logicacode.com" class="inline-flex items-center gap-2.5 text-white/85 hover:text-orange transition-colors"><span class="text-orange"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><span dir="ltr">contact@logicacode.com</span></a>
+        <a href="tel:+19546622972" class="inline-flex items-center gap-2.5 text-white/85 hover:text-orange transition-colors"><span class="text-orange"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span><span dir="ltr">+1 954 662 2972</span></a>
+      </div>
+    </div>
+    <div class="relative mt-10 pt-6 border-t border-nightline flex flex-col sm:flex-row justify-between items-center gap-3 text-[13px] text-white/40">
+      <p>© 2026 Newsroom247. Innovated by <a href="https://www.logicacode.com" target="_blank" rel="noopener" class="text-white/60 hover:text-orange transition-colors">logicacode</a>.</p>
+      <div class="flex gap-5">
+        <a href="mailto:contact@logicacode.com" class="hover:text-orange transition-colors">Contact Us</a>
+        <a href="#" class="hover:text-orange transition-colors">Company</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<script>
+  // Scroll-reveal — native IntersectionObserver, reduced-motion aware
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 </body>
 </html>
